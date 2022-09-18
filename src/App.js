@@ -1,46 +1,35 @@
-
+import React, { useState }  from 'react';
 import './App.css';
-import Info from './components/Info';
 import Navbar from './components/Navbar';
-import Pagination from './components/pagination'; 
-import {useEffect,useState} from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import Team from './components/Team';
+import Info from './components/Info';
+
+
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(10);
+  const [formTeam, setFormTeam] = useState([])
 
-
-  useEffect(() => {
-    const getUsers = async () => {
-      setLoading(true);
-        const url = `https://dummyjson.com/users/`
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        setUsers(parsedData.users);
-        setLoading(false);
-    }
-    getUsers();
-}, [])
-
-const indexOfLastUser = currentPage * usersPerPage;
-const indexOfFirstUser = indexOfLastUser - usersPerPage;
-const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-
-const paginate = pageNumber => setCurrentPage(pageNumber);
-
+  const storeTeam = (teamData) => {
+    const tempData=[...formTeam,teamData]
+    setFormTeam(tempData)
+  
+}
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <Info  users={currentUsers} loading={loading} />
-        <Pagination
-        usersPerPage={usersPerPage}
-        totalUsers={users.length}
-        paginate={paginate}
-      />
-      </div>
+      <BrowserRouter>
+        <Navbar  />
+        <Routes>
+          <Route path="/" element={<Info storeTeam={storeTeam}/>}>
+          </Route>
+          <Route path="/formteam" element={<Team tempData={formTeam}  />}>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
