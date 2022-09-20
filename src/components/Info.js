@@ -15,7 +15,7 @@ function Info(props) {
     useEffect(() => {
         const getUsers = async () => {
             setLoading(true);
-            const url = `http://localhost:5000/users`
+            const url = `https://heliverse-assignment.herokuapp.com`
             let parsedData = await fetch(url);
             let users = await parsedData.json()
             setUsers(users);
