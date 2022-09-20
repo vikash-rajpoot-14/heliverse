@@ -34,16 +34,13 @@ function Info(props) {
     const paginate = (page) => {
         setCurrentPage(page);
     }
-    const handleOnChange=(e)=>{
-        setSearchTerm(e.target.value)
-    }
-
+    
     return (
         <>
             <div className="container">
                 <h1>User Details</h1>
                 <form className="d-flex">
-                    <input className="form-control me-2" onChange={handleOnChange} type="search" placeholder="Search" aria-label="Search" />
+                    <input className="form-control me-2" value={searchTerm} onChange={(e)=>{setSearchTerm(e.target.value)}} type="search" placeholder="Search" aria-label="Search" />
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div className="row">
