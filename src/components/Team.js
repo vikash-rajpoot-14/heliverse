@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 function Team(props) {
 
-  console.log(props)
   return (
     <div className='container'>
       <h2>Team Members</h2>
