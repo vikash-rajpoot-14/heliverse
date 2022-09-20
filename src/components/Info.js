@@ -15,7 +15,9 @@ function Info(props) {
     useEffect(() => {
         const getUsers = async () => {
             setLoading(true);
-            const url = ` http://localhost:5000/users`
+            const devEnv = process.env.NODE_ENV !=="production";
+            const {REACT_APP_DEV_URL,REACT_APP_PROD_URL} = process.env;
+            const url = ` ${devEnv? REACT_APP_DEV_URL:REACT_APP_PROD_URL}`
             let parsedData = await fetch(url);
             let users = await parsedData.json()
             setUsers(users);
