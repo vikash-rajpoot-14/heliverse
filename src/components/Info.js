@@ -74,6 +74,8 @@ function Info(props) {
         setUsers(tempUsers);
     };
 
+
+
     useEffect(() => {
         const getUsers = async () => {
             setLoading(true);
@@ -135,8 +137,6 @@ function Info(props) {
         };
         filterData();
     }, [Gender, Domain, Avail, searchTerm]);
-
-
 
     return (
         <>
