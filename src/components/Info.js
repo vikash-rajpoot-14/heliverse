@@ -7,7 +7,7 @@ function Info(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(20);
     const [users, setUsers] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState("")
 
     // eslint-disable-next-line
     const [loading, setLoading] = useState(false);
@@ -34,26 +34,22 @@ function Info(props) {
     const paginate = (page) => {
         setCurrentPage(page);
     }
-    
+
     return (
         <>
             <div className="container">
                 <h1>User Details</h1>
                 <form className="d-flex">
-                    <input className="form-control me-2" value={searchTerm} onChange={(e)=>{setSearchTerm(e.target.value)}} type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                    <input className="form-control me-2"  onChange={(event)=>{setSearchTerm(event.target.value)}} type="search" placeholder="Search" aria-label="Search" />
+                    <button className="btn btn-outline-success" onClick={(event)=>{setSearchTerm(event.target.value)}} type="submit">Search</button>
                 </form>
                 <div className="row">
-                    {currentUsers.filter((val)=>{
-                       if(searchTerm===''){
-                        return val;
-                       }else if(val.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
-                        return val
-                       }else if(val.gender.toLowerCase().includes(searchTerm.toLowerCase())){
-                           return val
-                       }else{
-                        return val
-                       }
+                    {currentUsers.filter((item)=>{
+                      if(searchTerm.toLowerCase()===""){
+                        return item
+                      }else if(item.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return item
+                      }
                     }).map((item) => {
                         return (<div key={item.id} className="container col-md-4 my-3">
                             <Card storeTeam={props.storeTeam} item={item} />
