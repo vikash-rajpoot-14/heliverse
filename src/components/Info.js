@@ -142,9 +142,6 @@ function Info(props) {
         <>
             <div className="container">
                 <h1>User Details</h1>
-                <p>
-                    search:{searchTerm} gender:{Gender} domain:{Domain} Avail:-{Avail}
-                </p>
                 <div className="selection d-flex flex-row">
                     <div className="select " style={{ padding: "1.5rem" }}>
                         <h4>Search</h4>

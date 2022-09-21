@@ -14,7 +14,8 @@ const [pageN, setPageN] = useState(1)
     }
     return (
         <nav>
-            <ul className='pagination justify-content-center' style={{ "width": "80rem" }}>
+            <ul className='pagination justify-content-center' style={{"width": "80rem","--bs-pagination-padding-x":"25px","--bs-pagination-padding-y":
+            "8px" }}>
                 {pageNumbers.map((number, index) => {
                     return (<li key={index} className='page-item '>
                         <Link onClick={() => { paginate(number);handleOnClick(number) }} to="/" style={{ "width": "1.5rem" }} className='page-link '>
