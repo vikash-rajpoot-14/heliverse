@@ -2,6 +2,7 @@ import React from 'react'
 import Card from './Card'
 import Pagination from './pagination';
 import { useState, useEffect } from 'react'
+import e from 'cors';
 
 function Info(props) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -46,7 +47,7 @@ function Info(props) {
                     <div className="select " style={{ "padding": "1.5rem" }}>
                     <h4>Search</h4>
                         <form className="form d-">
-                            <input className="form-control me-2" style={{ "width": "12rem" }} onChange={(event) => { setSearchTerm(event.target.value) }} type="search" placeholder="Search" aria-label="Search" />
+                            <input className="form-control me-2" style={{ "width": "12rem" }} value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value) }} type="search" placeholder="Search" aria-label="Search" />
                         </form>
                     </div>
                     <div className="select " style={{ "padding": "1rem" }}>
@@ -78,29 +79,29 @@ function Info(props) {
                     </div>
                     <div className="select " style={{ "padding": "1rem" }}>
                         <h4>availability</h4>
-                        <select className="availibility" onChange={(e)=>{setAvail(e.target.value)}} style={{ "width": "12rem", "padding": "0.5rem", "margin": "0.5rem" }} aria-label="Default select example">
+                        <select className="availibility"  onChange={(e)=>{setAvail(e.target.value)}} style={{ "width": "12rem", "padding": "0.5rem", "margin": "0.5rem" }} aria-label="Default select example">
                             <option defaultChecked>select-option</option>
                             <option value={true}>Available</option>
                         </select>
                     </div>
                 </div>
                 <div className="row">
-                    {users.filter((item) => {
-                      if(Gender==="select-option"){
-                        return item
-                      }else if(item.gender.includes(Gender)){
-                        return item
-                      }
+                    {currentUsers.filter((item)=>{
+                        if(searchTerm===""){
+                            return item
+                        }else if(item.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
+                            return item
+                        }
+                    }).filter((item)=>{
+                        if(Gender==="select-option"){
+                            return item
+                        }else if(item.gender.includes(Gender)){
+                            return item
+                        }
                     }).filter((item)=>{
                         if(Domain==="select-option"){
                             return item
                         }else if(item.domain.includes(Domain)){
-                            return item
-                        }
-                    }).filter((item)=>{
-                        if(searchTerm===""){
-                            return item
-                        }else if(item.first_name.toLowerCase().includes(searchTerm.toLowerCase())){
                             return item
                         }
                     }).filter((item)=>{
