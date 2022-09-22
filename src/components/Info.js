@@ -67,14 +67,19 @@ function Info(props) {
         tempUsers1 = filterUserData.slice(0, 20);
         await setUsers(tempUsers1);
     };
-
-    const paginate = (page) => {
-        setCurrentPage(page);
-        const tempUsers = filterUsers.slice(indexOfFirstUser, indexOfLastUser);
-        setUsers(tempUsers);
-    };
-
-
+    useEffect(()=>{
+        console.log("current",currentPage);
+        paginate(currentPage)
+    },[currentPage])
+ 
+        const paginate =  (page) => {
+             setCurrentPage(page);
+            const tempUsers = filterUsers.slice(indexOfFirstUser, indexOfLastUser);
+            setUsers(tempUsers);
+        };
+   
+    
+   
 
     useEffect(() => {
         const getUsers = async () => {

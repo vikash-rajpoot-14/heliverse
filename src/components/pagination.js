@@ -10,8 +10,8 @@ const Pagination = ({ usersPerPage, totalUsers, paginate }) => {
     }
     return (
         <nav>
-            <ul className='pagination justify-content-center' style={{"width": "80rem","--bs-pagination-padding-x":"25px","--bs-pagination-padding-y":
-            "8px" }}>
+            <ul className='pagination justify-content-center' style={{"width": "80rem","--bs-pagination-padding-x":"15px","--bs-pagination-padding-y":
+            "5px" }}>
                 {pageNumbers.map((number, index) => {
                     return (<li key={index} className='page-item '>
                         <Link onClick={() => { paginate(number)}} to="/" style={{ "width": "1.5rem" }} className='page-link '>
